@@ -34,7 +34,7 @@ int _string(char *str)
  */
 int main(int status, char **env)
 {
-	char *input = "cisfun$ ", *buffer = NULL, *path;
+	char *input = "cisfun$ ", *buffer = NULL;
 	char *my_arg[10], *delim = " \n";
 	size_t maxsize = 0;
 	ssize_t chars;
@@ -65,12 +65,6 @@ int main(int status, char **env)
 			my_arg[++j] = strtok(NULL, delim);
 		}
 		my_arg[j] = NULL;
-		path = _getpath(my_arg[0]);
-		if (path == NULL)
-		{
-			_string("command not found\n");
-			continue;
-		}
 		my_pid = fork();
 		if (my_pid < 0)
 		{
@@ -80,12 +74,11 @@ int main(int status, char **env)
 		}
 		else if (my_pid == 0)
 		{
-			if (execve(path, my_arg, env) == -1)
+			if (execve(my_arg[0], my_arg, env) == -1)
 				_string("No such file or directory\n");
 		}
 		else
 			wait(&status);
 	}
-	free(path);
 	free(buffer);
 	return (0); }
