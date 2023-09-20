@@ -37,7 +37,7 @@ int main(int status, char **env)
 	char *input = "cisfun$ ", *buffer = NULL;
 	char *my_arg[] = {NULL, NULL};
 	size_t maxsize = 0;
-	size_t chars;
+	ssize_t chars;
 	pid_t my_pid;
 	int i = 0;
 
