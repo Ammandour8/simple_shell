@@ -35,11 +35,11 @@ int _string(char *str)
 int main(int status, char **env)
 {
 	char *input = "cisfun$ ", *buffer = NULL;
-	char *my_arg[] = {NULL, NULL};
+	char *my_arg[10], *delim = " \n";
 	size_t maxsize = 0;
 	ssize_t chars;
 	pid_t my_pid;
-	int i = 0;
+	int i, j;
 
 	while (1)
 	{
@@ -51,13 +51,19 @@ int main(int status, char **env)
 			free(buffer);
 			exit(0);
 		}
+		i = 0;
 		while (buffer[i])
 		{
 			if (buffer[i] == '\n')
 				buffer[i] = 0;
 			i++;
 		}
-		my_arg[0] = strdup(buffer);
+		j = 0;
+		my_arg[j] = strtok(buffer, delim);
+		while (my_arg[j])
+		{
+			my_arg[++j] = strtok(NULL, delim);
+		}
 		my_pid = fork();
 		if (my_pid < 0)
 		{
@@ -68,7 +74,7 @@ int main(int status, char **env)
 		else if (my_pid == 0)
 		{
 			if (execve(my_arg[0], my_arg, env) == -1)
-				_string("command does not exist\n");
+				_string("No such file or directory\n");
 		}
 		else
 			wait(&status);
