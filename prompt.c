@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "shell.h"
 
 /**
  *main - entry point
@@ -8,12 +7,12 @@
  */
 int main(void)
 {
-	size_t len = 0;
-	char *buff = NULL;
+	size_t maxsize = 0;
+	char *buffer = NULL;
 
-	printf("$ ");
-	getline(&buff, &len, stdin);
-	printf("%s", buff);
+	_string("cisfun$ ");
+	getline(&buffer, &maxsize, stdin);
+	_string(buffer);
 
 	free(buff);
 
