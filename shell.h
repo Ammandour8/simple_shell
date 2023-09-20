@@ -4,8 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <strings.h>
+#include <string.h>
 #include <sys/types.h>
+#include <ctype.h>
 
 int _myexit(info_t *info);
 int _mycd(info_t *info);
