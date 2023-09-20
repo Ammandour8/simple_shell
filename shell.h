@@ -10,5 +10,7 @@
 
 int _putchar(char c);
 int _string(char *str);
+char *store(char *path, char *my_arg);
+char *_getpath(char *my_arg);
 
 #endif
