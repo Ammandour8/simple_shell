@@ -42,9 +42,12 @@ int main(int i, char **env)
 		}
 		
 		i= 0;
-		while (buffer[i] == '\n')
-			buffer[i] = 0;
-		i++;
+		while (buffer[i])
+		{
+			if (buffer[i] == '\n')
+				buffer[i] = 0;
+			i++;
+		}
 		my_arg[0] = strdup(buffer);
 		my_pid = fork();
 
@@ -61,7 +64,7 @@ int main(int i, char **env)
 		}
 		else
 			wait(&status);
-		_string(buffer);
+		/*_string(buffer);*/
 	}
 	free(buffer);
 	return (0);
