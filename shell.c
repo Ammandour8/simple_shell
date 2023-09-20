@@ -43,11 +43,11 @@ int main(int status, char **env)
 
 	while (1)
 	{
-		_string(input);
+		if (isatty(0))
+			_string(input);
 		chars = getline(&buffer, &maxsize, stdin);
 		if (chars == -1)
 		{
-			_string("Exit");
 			free(buffer);
 			exit(0);
 		}
