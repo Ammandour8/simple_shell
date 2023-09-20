@@ -2,6 +2,11 @@
 #include <stdlib.h>
 #include "shell.h"
 
+int _putchar(char c)
+{
+	return (write(1, &c, 1));
+}
+
 int _string(char *str)
 {
 	int i = 0, count = 0;
