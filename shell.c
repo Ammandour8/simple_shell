@@ -2,11 +2,21 @@
 #include <stdlib.h>
 #include "shell.h"
 
+/**
+ *_putchar - prints output
+ *@c: character
+ *Return: 0
+ */
 int _putchar(char c)
 {
 	return (write(1, &c, 1));
 }
 
+/**
+ *_string - prints string
+ *@str: string
+ *Return: 0
+ */
 int _string(char *str)
 {
 	int i = 0, count = 0;
@@ -18,30 +28,29 @@ int _string(char *str)
 
 /**
  *main - entry point
+ *@status: integer
+ *@env: variable
  *Return: 0
  */
-int main(int i, char **env)
+int main(int status, char **env)
 {
 	char *input = "cisfun$ ", *buffer = NULL;
 	char *my_arg[] = {NULL, NULL};
 	size_t maxsize = 0;
-	ssize_t chars;
+	size_t chars;
 	pid_t my_pid;
-	int status;
+	int i = 0;
 
 	while (1)
 	{
 		_string(input);
 		chars = getline(&buffer, &maxsize, stdin);
-
 		if (chars == -1)
 		{
 			_string("Exit");
 			free(buffer);
 			exit(0);
 		}
-		
-		i= 0;
 		while (buffer[i])
 		{
 			if (buffer[i] == '\n')
@@ -50,7 +59,6 @@ int main(int i, char **env)
 		}
 		my_arg[0] = strdup(buffer);
 		my_pid = fork();
-
 		if (my_pid < 0)
 		{
 			_string("Failed");
@@ -64,8 +72,6 @@ int main(int i, char **env)
 		}
 		else
 			wait(&status);
-		/*_string(buffer);*/
 	}
 	free(buffer);
-	return (0);
-}
+	return (0); }
