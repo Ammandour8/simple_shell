@@ -3,30 +3,6 @@
 #include "shell.h"
 
 /**
- *_putchar - prints output
- *@c: character
- *Return: 0
- */
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-
-/**
- *_string - prints string
- *@str: string
- *Return: 0
- */
-int _string(char *str)
-{
-	int i = 0, count = 0;
-
-	while (str[i])
-		count += _putchar(str[i++]);
-	return (count);
-}
-
-/**
  *main - entry point
  *@status: integer
  *@env: variable
@@ -64,7 +40,6 @@ int main(int status, char **env)
 		{
 			my_arg[++j] = strtok(NULL, delim);
 		}
-		my_arg[j] = NULL;
 		my_pid = fork();
 		if (my_pid < 0)
 		{
