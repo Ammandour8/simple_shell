@@ -48,18 +48,3 @@ char *_getpath(char *my_arg)
 	}
 	return (0);
 }
-
-/**
- *main - entry point
- */
-int main(void)
-{
-	char *my_arg[10], *path;
-
-	path = _getpath(my_arg[0]);
-	if (path == NULL)
-	{
-		_string("Command not found\n");
-		continue;
-	}
-}
