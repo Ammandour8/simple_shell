@@ -46,7 +46,7 @@ int main(int status, char **env)
 		else if (my_pid == 0)
 		{
 			if (execve(my_arg[0], my_arg, env) == -1)
-				_string("No such file or directory\n"); }
+				continue; }
 		else
 			wait(&status); }
 	free(buffer);
